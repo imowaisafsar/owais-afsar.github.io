@@ -191,7 +191,7 @@
             delay: 40 // enter zero for live resizing
         }
         const drawBetweenObjects = {
-            
+
             //cmake the line
             makeLine: function (line, div1, div2) {
                 //debugger
@@ -211,7 +211,7 @@
                 let count = 1, first, last;
                 $(search).each(function (index, el) {
                     if (search.eq(index + 1).length) { //only do drawBetweenObject if there is another.
-                        (count === 1 ? first = $(this): '');
+                        (count === 1 ? first = $(this) : '');
                         count++
                         last = search.eq(index + 1);
                         drawBetweenObjects.makeLine(config.line, $(this), search.eq(index + 1));   //args order - line, div1 and div2 - the next div.
@@ -262,10 +262,14 @@
 
         $(".form-check").click(function () {
             //alert()
-            $(this).addClass('point')
+            if (!$(this).hasClass('point')) {
+                $(this).addClass('point')
+            } else {
+                $(this).removeClass('point')
+            }
         });
         $(".btn").click(function () {
-            
+
 
             config.target = $(".point");
             //console.log(config.target)
