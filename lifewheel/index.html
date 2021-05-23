@@ -260,6 +260,7 @@
             })
         }
 
+        // Ctrl U
         document.onkeydown = function (e) {
             if (e.ctrlKey &&
                 (e.keyCode === 67 ||
@@ -279,7 +280,27 @@
                 return true;
             }
         });
+        // Right Click
         document.addEventListener('contextmenu', event => event.preventDefault());
+        // F12
+        document.onkeypress = function (event) {
+            event = (event || window.event);
+            if (event.keyCode == 123) {
+                return false;
+            }
+        }
+        document.onmousedown = function (event) {
+            event = (event || window.event);
+            if (event.keyCode == 123) {
+                return false;
+            }
+        }
+        document.onkeydown = function (event) {
+            event = (event || window.event);
+            if (event.keyCode == 123) {
+                return false;
+            }
+        }
     </script>
 </body>
 
