@@ -251,6 +251,7 @@ function sendEmail(name, email, button) {
                             "Message has been send successfully! I will get back to you ASAP!", "success",
                             { position: "bottom" }
                         );
+                        $('div#mailModal').fadeOut('fast')
                     } else {
                         // error message
                         $(".modal-content").notify(
