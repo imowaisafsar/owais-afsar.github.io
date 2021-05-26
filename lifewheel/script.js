@@ -55,27 +55,6 @@ $("button#connect").click(function () {
 })
 $("button#printPDF").click(function () {
     $('div#mailModal').fadeIn('fast')
-    
-    var iframe = document.getElementById("iframe");
-    var elmnt = iframe.contentWindow.document.getElementsByTagName("B")[0];
-    elmnt.style.display = "none";
-
-    // var iframeWindow = document.getElementById("iframe").contentWindow;
-    // iframeWindow.addEventListener("load", function() {
-    //     var doc = iframe.contentDocument || iframe.contentWindow.document;
-    //     var target = doc.getElementById("iframe");
-    //     target.innerHTML = "Found it!";
-    // });
-    
-
-    // let mCanvas;
-    // let div = document.getElementById('container');
-    // $('#output').empty();
-    // html2canvas(div).then(
-    //     function (canvas) {
-    //         document.getElementById('output').appendChild(canvas);
-    //         mCanvas = canvas;
-    //     })
 })
 
 // $(document).keypress("u", function (e) {
@@ -120,11 +99,9 @@ $("button#printPDF").click(function () {
 // Listen for a submit
 // document.querySelector(".mj-form").addEventListener("submit", submitForm);
 
-
-// $("#iframe .mj-form").submit(function () {
-//     alert('Hello')
-//     //submitForm(e)
-// });
+$("form.mj-form").submit(function (e) {
+    submitForm(e)
+});
 
 function submitForm(e) {
     e.preventDefault();
@@ -132,8 +109,6 @@ function submitForm(e) {
     //   Get input Values
     let name = $("input.w-preview-fields-content-cell-field-58278").val();
     let email = $("input.w-preview-fields-content-cell-field-email").val();
-    // let name = $("input.w-preview-fields-content-cell-field-60317").val();
-    // let email = $("input.w-preview-fields-content-cell-field-email").val();
     if (name == "" || email == "") {
         $(".modal-content").notify(
             "Please fill details correctly.", "error",
@@ -161,21 +136,28 @@ const ValidateEmail = (email) => {
 }
 function sendEmail(name, email) {
 
+    // var selector = document.getElementById('body')
+    // html2canvas(selector).then(function(canvas){
+    //     // $('#output').append(canvas)
+    //     console.log(canvas.toDataURL('image/jpeg', 0.9))
+    // })
+
     let mCanvas;
-    let div = $('#container');
+    var selector = document.getElementById('body')
     $('#output').empty();
-    html2canvas(div).then(
+    html2canvas(selector).then(
         function (canvas) {
             $('#output').append(canvas);
             mCanvas = canvas;
+            console.log(canvas.toDataURL('image/jpeg', 0.9))
         }).then(function () {
 
             var img = mCanvas.toDataURL("image/png");
-            var doc = new jsPDF('l', 'mm', [297, 210]);
+            var doc = new jsPDF('l', 'mm', [594, 420]);
             doc.addImage(img, 'JPEG', 0, 0);
             // Making Data URI
             var out = doc.output();
-            var url = 'data:application/pdf;base64,' + btoa(out);
+            var pdfBase64 = 'data:application/pdf;base64,' + btoa(out);
 
             Email.send({
                 Host: "smtp.gmail.com",
@@ -190,7 +172,7 @@ function sendEmail(name, email) {
                 Attachments: [
                     {
                         name: "wheel-of-life-cycle.pdf",
-                        data: url
+                        data: pdfBase64
                     }
                 ]
             })
