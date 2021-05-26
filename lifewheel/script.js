@@ -1,4 +1,7 @@
 $("ul.number_list > li").click(function () {
+    if ($(this).hasClass('number_list-text')) {
+        return
+    }
     let rowId = $(this).attr('data-id')
     if (!$(this).hasClass('active_point')) {
         $(`ul.number_list-${rowId}`).each(function (a) {
@@ -46,157 +49,106 @@ const drawBetweenObjects = {
 
 $("button#connect").click(function () {
     config.target = $(".active_point");
-    console.log(config.target)
     drawBetweenObjects.findLines(config.target);
     $(this).hide()
     $('#printPDF').show()
 })
 $("button#printPDF").click(function () {
     $('div#mailModal').fadeIn('fast')
-    //printFn();
-    //test();
-    //test2()
+    
+    var iframe = document.getElementById("iframe");
+    var elmnt = iframe.contentWindow.document.getElementsByTagName("B")[0];
+    elmnt.style.display = "none";
+
+    // var iframeWindow = document.getElementById("iframe").contentWindow;
+    // iframeWindow.addEventListener("load", function() {
+    //     var doc = iframe.contentDocument || iframe.contentWindow.document;
+    //     var target = doc.getElementById("iframe");
+    //     target.innerHTML = "Found it!";
+    // });
+    
+
+    // let mCanvas;
+    // let div = document.getElementById('container');
+    // $('#output').empty();
+    // html2canvas(div).then(
+    //     function (canvas) {
+    //         document.getElementById('output').appendChild(canvas);
+    //         mCanvas = canvas;
+    //     })
 })
-// async function test2() {
-//     let mCanvas;
-//     let div = document.getElementById('container');
-//     $('#output').empty();
-//     await html2canvas(div).then(
-//         function (canvas) {
-//             document.getElementById('output').appendChild(canvas);
-//             mCanvas = canvas;
-//         }).then(function () {
 
-//             var img = mCanvas.toDataURL("image/png");
-//             var doc = new jsPDF('l', 'mm', [297, 210]);
-//             doc.addImage(img, 'JPEG', 0, 0);
-//             // Making Data URI
-//             var out = doc.output();
-//             var url = 'data:application/pdf;base64,' + btoa(out);
-
-//             Email.send({
-//                 Host: "smtp.gmail.com",
-//                 Username: "owaisafsar.mail@gmail.com",
-//                 Password: "nxpphjtlwnxfofzk",
-//                 To: "owaisafsar.mail@gmail.com",
-//                 From: "owaisafsar.mail@gmail.com",
-//                 Subject: `New Mail from "test"`,
-//                 Body: "owaisafsar.mail@gmail.com",
-//                 Attachments: [
-//                     {
-//                         name: "wheel-of-life-cycle.pdf",
-//                         data: url
-//                     }
-//                 ]
-//             })
-//                 .then((message) => {
-//                     console.log(message)
-//                 });
-//         });
+// $(document).keypress("u", function (e) {
+//     if (e.ctrlKey) {
+//         return false;
+//     }
+//     else {
+//         return true;
+//     }
+// });
+// // Right Click
+// document.addEventListener('contextmenu', event => event.preventDefault());
+// // F12
+// document.onkeypress = function (event) {
+//     event = (event || window.event);
+//     if (event.keyCode == 123) {
+//         return false;
+//     }
 // }
-
-// var pdfBase64 = undefined;
-// function test() {
-//     let $pdf = document.getElementById("html")
-//     console.log($pdf)
-//     var opt = {
-//         margin: 0,
-//         filename: 'wheel-of-life-cycle.pdf',
-//         image: { type: 'jpeg', quality: 1 },
-//         html2canvas: { scale: 1 },
-//         jsPDF: { unit: 'in', format: 'letter', orientation: 'landscape' }
-//     };
-
-//     // New Promise-based usage:
-//     // html2pdf().from($pdf).set(opt).save();
-//     pdfBase64 = html2pdf().from($pdf).set(opt);
-//     console.log(pdfBase64)
+// document.onmousedown = function (event) {
+//     event = (event || window.event);
+//     if (event.keyCode == 123) {
+//         return false;
+//     }
 // }
-
-// async function printFn() {
-//     let div = document.getElementById('container');
-//     $('#output').empty();
-//     await html2canvas(div).then(
-//         function (canvas) {
-//             document
-//                 .getElementById('output')
-//                 .appendChild(canvas);
-//         });
-//     await printJS({
-//         printable: 'output',
-//         type: 'html',
-//         header: ''
-//     })
+// document.onkeydown = function (event) {
+//     event = (event || window.event);
+//     if (event.keyCode == 123) {
+//         return false;
+//     }
+//     if (event.ctrlKey &&
+//         (event.keyCode === 67 ||
+//             event.keyCode === 86 ||
+//             event.keyCode === 85 ||
+//             event.keyCode === 117)) {
+//         return false;
+//     } else {
+//         return true;
+//     }
 // }
-
-$(document).keypress("u", function (e) {
-    if (e.ctrlKey) {
-        return false;
-    }
-    else {
-        return true;
-    }
-});
-// Right Click
-document.addEventListener('contextmenu', event => event.preventDefault());
-// F12
-document.onkeypress = function (event) {
-    event = (event || window.event);
-    if (event.keyCode == 123) {
-        return false;
-    }
-}
-document.onmousedown = function (event) {
-    event = (event || window.event);
-    if (event.keyCode == 123) {
-        return false;
-    }
-}
-document.onkeydown = function (event) {
-    event = (event || window.event);
-    if (event.keyCode == 123) {
-        return false;
-    }
-    if (event.ctrlKey &&
-        (event.keyCode === 67 ||
-            event.keyCode === 86 ||
-            event.keyCode === 85 ||
-            event.keyCode === 117)) {
-        return false;
-    } else {
-        return true;
-    }
-}
 
 // Listen for a submit
-document.querySelector(".contact-form").addEventListener("submit", submitForm);
+// document.querySelector(".mj-form").addEventListener("submit", submitForm);
+
+
+// $("#iframe .mj-form").submit(function () {
+//     alert('Hello')
+//     //submitForm(e)
+// });
+
 function submitForm(e) {
     e.preventDefault();
-    let button = document.querySelector(".contact-submit");
-    button.setAttribute("disabled", "disabled");
-    $('.email_btn_loader').show()
+
     //   Get input Values
-    let name = document.querySelector(".contact-name").value;
-    let email = document.querySelector(".contact-email").value;
+    let name = $("input.w-preview-fields-content-cell-field-58278").val();
+    let email = $("input.w-preview-fields-content-cell-field-email").val();
+    // let name = $("input.w-preview-fields-content-cell-field-60317").val();
+    // let email = $("input.w-preview-fields-content-cell-field-email").val();
     if (name == "" || email == "") {
         $(".modal-content").notify(
             "Please fill details correctly.", "error",
             { position: "bottom" }
-        );
-        button.removeAttribute("disabled");
-        $('.email_btn_loader').hide()
+        )
         return
     }
     if (ValidateEmail(email) == "false") {
         $(".modal-content").notify(
             "Enter correct email address.", "error",
             { position: "bottom" }
-        );
-        button.removeAttribute("disabled");
-        $('.email_btn_loader').hide()
+        )
         return
     }
-    sendEmail(name, email, button)
+    sendEmail(name, email)
 }
 const ValidateEmail = (email) => {
     const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -207,14 +159,14 @@ const ValidateEmail = (email) => {
         return "false";
     }
 }
-function sendEmail(name, email, button) {
+function sendEmail(name, email) {
 
     let mCanvas;
-    let div = document.getElementById('container');
+    let div = $('#container');
     $('#output').empty();
     html2canvas(div).then(
         function (canvas) {
-            document.getElementById('output').appendChild(canvas);
+            $('#output').append(canvas);
             mCanvas = canvas;
         }).then(function () {
 
@@ -229,9 +181,9 @@ function sendEmail(name, email, button) {
                 Host: "smtp.gmail.com",
                 Username: "owaisafsar.mail@gmail.com",
                 Password: "nxpphjtlwnxfofzk",
-                // To: email,
-                // From: "owaisafsar.mail@gmail.com",
                 To: email,
+                // Bcc: "info@wertelounge.de",
+                Bcc: "owais.afsar@outlook.com",
                 From: "owaisafsar.mail@gmail.com",
                 Subject: `New Mail from '${name}'`,
                 Body: `Sender Name: <b>${name}</b> <br> Sender Email: <b>${email}</b>`,
@@ -259,8 +211,6 @@ function sendEmail(name, email, button) {
                             { position: "bottom" }
                         );
                     }
-                    button.removeAttribute("disabled");
-                    $('.email_btn_loader').hide()
                 });
         });
 }
