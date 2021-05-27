@@ -57,44 +57,44 @@ $("button#printPDF").click(function () {
     $('div#mailModal').fadeIn('fast')
 })
 
-// $(document).keypress("u", function (e) {
-//     if (e.ctrlKey) {
-//         return false;
-//     }
-//     else {
-//         return true;
-//     }
-// });
-// // Right Click
-// document.addEventListener('contextmenu', event => event.preventDefault());
-// // F12
-// document.onkeypress = function (event) {
-//     event = (event || window.event);
-//     if (event.keyCode == 123) {
-//         return false;
-//     }
-// }
-// document.onmousedown = function (event) {
-//     event = (event || window.event);
-//     if (event.keyCode == 123) {
-//         return false;
-//     }
-// }
-// document.onkeydown = function (event) {
-//     event = (event || window.event);
-//     if (event.keyCode == 123) {
-//         return false;
-//     }
-//     if (event.ctrlKey &&
-//         (event.keyCode === 67 ||
-//             event.keyCode === 86 ||
-//             event.keyCode === 85 ||
-//             event.keyCode === 117)) {
-//         return false;
-//     } else {
-//         return true;
-//     }
-// }
+$(document).keypress("u", function (e) {
+    if (e.ctrlKey) {
+        return false;
+    }
+    else {
+        return true;
+    }
+});
+// Right Click
+document.addEventListener('contextmenu', event => event.preventDefault());
+// F12
+document.onkeypress = function (event) {
+    event = (event || window.event);
+    if (event.keyCode == 123) {
+        return false;
+    }
+}
+document.onmousedown = function (event) {
+    event = (event || window.event);
+    if (event.keyCode == 123) {
+        return false;
+    }
+}
+document.onkeydown = function (event) {
+    event = (event || window.event);
+    if (event.keyCode == 123) {
+        return false;
+    }
+    if (event.ctrlKey &&
+        (event.keyCode === 67 ||
+            event.keyCode === 86 ||
+            event.keyCode === 85 ||
+            event.keyCode === 117)) {
+        return false;
+    } else {
+        return true;
+    }
+}
 
 // Listen for a submit
 // document.querySelector(".contact-form").addEventListener("submit", SsubmitForm);
