@@ -48,14 +48,196 @@ const drawBetweenObjects = {
 }
 
 $("button#connect").click(function () {
+    $('#svg').css({
+        'width': $('body').width(),
+        'height': $('body').height()
+    })
     config.target = $(".active_point");
     drawBetweenObjects.findLines(config.target);
     $(this).hide()
     $('#printPDF').show()
 })
+let Canvas;
 $("button#printPDF").click(function () {
-    $('div#mailModal').fadeIn('fast')
+    if ($('body').height() > $(window).height()) {
+        $('#svg').css('left', '3px')
+    }
+    $('#printPDF').css('visibility', 'hidden')
+    var selector = document.getElementById('body')
+    html2canvas(selector).then(
+        function (canvas) {
+            Canvas = canvas;
+            console.log(canvas.toDataURL('image/jpeg', 0.9))
+        }).then(function () {
+            $('div#mailModal').fadeIn('fast')
+            $('#svg').css('left', '0px')
+        })
 })
+
+// Listen for FORM submit
+$(".contact-form").submit(function (e) {
+    submitForm(e)
+})
+function submitForm(e) {
+    e.preventDefault();
+
+    $('.email_btn_loader').show()
+    let button = document.querySelector(".contact-submit");
+    button.setAttribute("disabled", "disabled");
+
+    //   Get input Values
+    let name = $("input.contact-name").val();
+    let email = $("input.contact-email").val();
+    if (name == "" || email == "") {
+        $(".modal-content").notify(
+            "Please fill details correctly.", "error",
+            { position: "bottom" }
+        )
+        button.removeAttribute("disabled");
+        $('.email_btn_loader').hide()
+        return
+    }
+    if (ValidateEmail(email) == "false") {
+        $(".modal-content").notify(
+            "Enter correct email address.", "error",
+            { position: "bottom" }
+        )
+        button.removeAttribute("disabled");
+        $('.email_btn_loader').hide()
+        return
+    }
+    //debugger;
+    sendEmail(name, email, button)
+}
+const ValidateEmail = (email) => {
+    const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (regex.test(String(email).toLowerCase())) {
+        return "true";
+    }
+    else {
+        return "false";
+    }
+}
+function sendEmail(name, email, button) {
+
+    var img = Canvas.toDataURL("image/png", 0.8);
+    var doc = new jsPDF({
+        orientation: 'l', // landscape
+        unit: 'pt', // points, pixels won't work properly
+        format: [Canvas.width, Canvas.height] // set needed dimensions for any element
+    });
+    doc.addImage(img, 'JPEG', 0, 0, Canvas.width, Canvas.height);
+    // Making Data URI
+    var out = doc.output();
+    var pdfBase64 = 'data:application/pdf;base64,' + btoa(out);
+
+    Email.send({
+        Host: "smtp.gmail.com",
+        Username: "owaisafsar.mail@gmail.com",
+        Password: "nxpphjtlwnxfofzk",
+        To: email,
+        //Bcc: "info@wertelounge.de",
+        From: "owaisafsar.mail@gmail.com",
+        Subject: `New Mail from '${name}'`,
+        Body: `
+            <b>Sender Name:</b> ${name} <br>
+            <b>Sender Email:</b> ${email}`,
+        Attachments: [
+            {
+                name: "wheel-of-life-cycle.pdf",
+                data: pdfBase64
+            }
+        ]
+    })
+        .then((message) => {
+            console.log(message)
+            if (message === "OK") {
+                // reset form data
+                document.querySelector(".contact-form").reset();
+                // success message
+                $(".modal-content").notify(
+                    "Message has been send successfully! I will get back to you ASAP!", "success",
+                    { position: "bottom" }
+                );
+                $('div#mailModal').fadeOut('fast')
+            } else {
+                // error message
+                $(".modal-content").notify(
+                    "Something went wrong! Kindly pick another way to connect with me.", "error",
+                    { position: "bottom" }
+                );
+            }
+            button.removeAttribute("disabled");
+            $('.email_btn_loader').hide()
+        });
+}
+
+// function sendEmail(name, email, button) {
+
+//     let Canvas;
+//     // var selector = document.getElementById('complete')
+//     $('#output').empty();
+//     html2canvas(document.body).then(
+//         function (canvas) {
+//             //$('#output').append(canvas);
+//             Canvas = canvas;
+//             console.log(canvas.toDataURL('image/jpeg', 0.9))
+//         }).then(function () {
+
+//             var img = Canvas.toDataURL("image/png", 0.9);
+//             // var doc = new jsPDF('l', 'mm', [400, 260]);
+//             // doc.addImage(img, 'JPEG', 0, 0);
+//             var doc = new jsPDF({
+//                 orientation: 'l', // landscape
+//                 unit: 'pt', // points, pixels won't work properly
+//                 format: [Canvas.width, Canvas.height] // set needed dimensions for any element
+//             });
+//             doc.addImage(img, 'JPEG', 0, 0, Canvas.width, Canvas.height);
+//             // Making Data URI
+//             var out = doc.output();
+//             var pdfBase64 = 'data:application/pdf;base64,' + btoa(out);
+
+//             Email.send({
+//                 Host: "smtp.gmail.com",
+//                 Username: "owaisafsar.mail@gmail.com",
+//                 Password: "nxpphjtlwnxfofzk",
+//                 To: email,
+//                 //Bcc: "info@wertelounge.de",
+//                 From: "owaisafsar.mail@gmail.com",
+//                 Subject: `New Mail from '${name}'`,
+//                 Body: `
+//                 <b>Sender Name:</b> ${name} <br>
+//                 <b>Sender Email:</b> ${email}`,
+//                 Attachments: [
+//                     {
+//                         name: "wheel-of-life-cycle.pdf",
+//                         data: pdfBase64
+//                     }
+//                 ]
+//             })
+//                 .then((message) => {
+//                     console.log(message)
+//                     if (message === "OK") {
+//                         // reset form data
+//                         document.querySelector(".contact-form").reset();
+//                         // success message
+//                         $(".modal-content").notify(
+//                             "Message has been send successfully! I will get back to you ASAP!", "success",
+//                             { position: "bottom" }
+//                         );
+//                         $('div#mailModal').fadeOut('fast')
+//                     } else {
+//                         // error message
+//                         $(".modal-content").notify(
+//                             "Something went wrong! Kindly pick another way to connect with me.", "error",
+//                             { position: "bottom" }
+//                         );
+//                     }
+//                     button.removeAttribute("disabled");
+//                     $('.email_btn_loader').hide()
+//                 });
+//         });
+// }
 
 $(document).keypress("u", function (e) {
     if (e.ctrlKey) {
@@ -94,117 +276,4 @@ document.onkeydown = function (event) {
     } else {
         return true;
     }
-}
-
-// Listen for a submit
-// document.querySelector(".contact-form").addEventListener("submit", SsubmitForm);
-
-$(".contact-form").submit(function (e) {
-    submitForm(e)
-})
-function submitForm(e) {
-    e.preventDefault();
-
-    let button = document.querySelector(".contact-submit");
-    button.setAttribute("disabled", "disabled");
-    $('.email_btn_loader').show()
-
-    //   Get input Values
-    let name = $("input.contact-name").val();
-    let email = $("input.contact-email").val();
-    if (name == "" || email == "") {
-        $(".modal-content").notify(
-            "Please fill details correctly.", "error",
-            { position: "bottom" }
-        )
-        button.removeAttribute("disabled");
-        $('.email_btn_loader').hide()
-        return
-    }
-    if (ValidateEmail(email) == "false") {
-        $(".modal-content").notify(
-            "Enter correct email address.", "error",
-            { position: "bottom" }
-        )
-        button.removeAttribute("disabled");
-        $('.email_btn_loader').hide()
-        return
-    }
-    //debugger;
-    sendEmail(name, email, button)
-}
-const ValidateEmail = (email) => {
-    const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if (regex.test(String(email).toLowerCase())) {
-        return "true";
-    }
-    else {
-        return "false";
-    }
-}
-function sendEmail(name, email, button) {
-
-    // var selector = document.getElementById('body')
-    // html2canvas(selector).then(function(canvas){
-    //     // $('#output').append(canvas)
-    //     console.log(canvas.toDataURL('image/jpeg', 0.9))
-    // })
-
-    let mCanvas;
-    var selector = document.getElementById('main')
-    $('#output').empty();
-    html2canvas(selector).then(
-        function (canvas) {
-            $('#output').append(canvas);
-            mCanvas = canvas;
-            console.log(canvas.toDataURL('image/jpeg', 0.9))
-        }).then(function () {
-
-            var img = mCanvas.toDataURL("image/png", 0.9);
-            var doc = new jsPDF('l', 'mm', [400, 260]);
-            doc.addImage(img, 'JPEG', 0, 0);
-            // Making Data URI
-            var out = doc.output();
-            var pdfBase64 = 'data:application/pdf;base64,' + btoa(out);
-
-            Email.send({
-                Host: "smtp.gmail.com",
-                Username: "owaisafsar.mail@gmail.com",
-                Password: "nxpphjtlwnxfofzk",
-                To: email,
-                Bcc: "info@wertelounge.de",
-                From: "owaisafsar.mail@gmail.com",
-                Subject: `New Mail from '${name}'`,
-                Body: `
-                <b>Sender Name:</b> ${name} <br>
-                <b>Sender Email:</b> ${email}`,
-                Attachments: [
-                    {
-                        name: "wheel-of-life-cycle.pdf",
-                        data: pdfBase64
-                    }
-                ]
-            })
-                .then((message) => {
-                    console.log(message)
-                    if (message === "OK") {
-                        // reset form data
-                        document.querySelector(".contact-form").reset();
-                        // success message
-                        $(".modal-content").notify(
-                            "Message has been send successfully! I will get back to you ASAP!", "success",
-                            { position: "bottom" }
-                        );
-                        $('div#mailModal').fadeOut('fast')
-                    } else {
-                        // error message
-                        $(".modal-content").notify(
-                            "Something went wrong! Kindly pick another way to connect with me.", "error",
-                            { position: "bottom" }
-                        );
-                    }
-                    button.removeAttribute("disabled");
-                    $('.email_btn_loader').hide()
-                });
-        });
 }
