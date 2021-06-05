@@ -1,3 +1,4 @@
+// numbers points selection and deselect
 $("ul.number_list > li").click(function () {
     if ($(this).hasClass('number_list-text')) {
         return
@@ -85,7 +86,7 @@ function submitForm(e) {
     let button = document.querySelector(".contact-submit");
     button.setAttribute("disabled", "disabled");
 
-    //   Get input Values
+    // Get input Values
     let name = $("input.contact-name").val();
     let email = $("input.contact-email").val();
     if (name == "" || email == "") {
@@ -107,6 +108,7 @@ function submitForm(e) {
         return
     }
     //debugger;
+    // send email method
     sendEmail(name, email, button)
 }
 const ValidateEmail = (email) => {
@@ -133,11 +135,11 @@ function sendEmail(name, email, button) {
 
     Email.send({
         Host: "smtp.gmail.com",
-        Username: "owaisafsar.mail@gmail.com",
-        Password: "nxpphjtlwnxfofzk",
+        Username: "youremailaddress@mail.com", // Enter email address from which all email will be shoot.
+        Password: "youremailpassword", // Enter password of email address from which all email will be shoot.
         To: email,
-        //Bcc: "info@wertelounge.de",
-        From: "owaisafsar.mail@gmail.com",
+        Bcc: "info@wertelounge.de",
+        From: "youremailaddress@mail.com", // Enter email address from which all email will be shoot.
         Subject: `New Mail from '${name}'`,
         Body: `
             <b>Sender Name:</b> ${name} <br>
@@ -170,43 +172,4 @@ function sendEmail(name, email, button) {
             button.removeAttribute("disabled");
             $('.email_btn_loader').hide()
         });
-}
-
-$(document).keypress("u", function (e) {
-    if (e.ctrlKey) {
-        return false;
-    }
-    else {
-        return true;
-    }
-});
-// Right Click
-document.addEventListener('contextmenu', event => event.preventDefault());
-// F12
-document.onkeypress = function (event) {
-    event = (event || window.event);
-    if (event.keyCode == 123) {
-        return false;
-    }
-}
-document.onmousedown = function (event) {
-    event = (event || window.event);
-    if (event.keyCode == 123) {
-        return false;
-    }
-}
-document.onkeydown = function (event) {
-    event = (event || window.event);
-    if (event.keyCode == 123) {
-        return false;
-    }
-    if (event.ctrlKey &&
-        (event.keyCode === 67 ||
-            event.keyCode === 86 ||
-            event.keyCode === 85 ||
-            event.keyCode === 117)) {
-        return false;
-    } else {
-        return true;
-    }
 }
