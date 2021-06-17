@@ -1,14 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Assignment</title>
+    <link rel="shortcut icon" href="./assets/img/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Paytone+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/style.css">
 </head>
-<body>
-    
 
-    <script src="./script.js"></script>
+<body>
+
+    <div class="row piano-row parallex">
+        <ul>
+            <li><div data-key="65" class="key" onclick="pianoKeyPress(this)">a</div></li>
+            <li><div data-key="66" class="key" onclick="pianoKeyPress(this)">b</div></li>
+            <li><div data-key="67" class="key" onclick="pianoKeyPress(this)">c</div></li>
+            <li><div data-key="68" class="key" onclick="pianoKeyPress(this)">d</div></li>
+            <li><div data-key="69" class="key" onclick="pianoKeyPress(this)">e</div></li>
+            <li><div data-key="70" class="key" onclick="pianoKeyPress(this)">f</div></li>
+            <li><div data-key="71" class="key" onclick="pianoKeyPress(this)">g</div></li>
+        </ul>
+    </div>
+
+    <audio data-key="65" src="./assets/notes/A.mp3"></audio>
+    <audio data-key="66" src="./assets/notes/B.mp3"></audio>
+    <audio data-key="67" src="./assets/notes/C.mp3"></audio>
+    <audio data-key="68" src="./assets/notes/D.mp3"></audio>
+    <audio data-key="69" src="./assets/notes/E.mp3"></audio>
+    <audio data-key="70" src="./assets/notes/F.mp3"></audio>
+    <audio data-key="71" src="./assets/notes/G.mp3"></audio>
+
+    <div class="row piano-row">
+        <ul>
+            
+        </ul>
+    </div>
+
+    <script src="./assets/app.js"></script>
 </body>
+
 </html>
