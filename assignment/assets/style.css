@@ -11,6 +11,7 @@
     text-align: center;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 .piano-row.row.parallex {
     background-image: url('./img/bg.jpg');
@@ -51,4 +52,28 @@
 .key.playing {
     background: linear-gradient(45deg, #1e0a21, #803c4a) !important;
     border-color: #ce5b5a !important;
+}
+
+@media only screen and (max-width:975px){
+    .piano-row ul li {
+        list-style: none;
+        margin: 2px 2px;
+    }
+    .piano-row ul li div.key {
+        display: flex;
+        width: 44px;
+        height: 44px;
+        background-color: #ccc;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Paytone One', sans-serif;
+        font-size: 20px;
+        text-transform: capitalize;
+        background: linear-gradient(45deg, #803c4a, #1e0a21);
+        border-radius: 8px;
+        color: #fff;
+        cursor: pointer;
+        border: 3px solid #110519;
+    }
+
 }
