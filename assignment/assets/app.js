@@ -97,6 +97,6 @@ function calculateAge() {
     let datePicked = document.querySelector(".date-picker").value;
     console.log(datePicked);
 }
-document
-  .querySelector(".calculate-age")
-  .addEventListener("click", calculateAge);
+// document
+//   .querySelector(".calculate-age")
+//   .addEventListener("click", calculateAge);
