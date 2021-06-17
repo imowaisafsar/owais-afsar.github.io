@@ -9,6 +9,7 @@
     <link rel="shortcut icon" href="./assets/img/favicon.ico" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Paytone+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Changa:wght@700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./assets/style.css">
 </head>
 
@@ -16,13 +17,27 @@
 
     <div class="row piano-row parallex">
         <ul>
-            <li><div data-key="65" class="key" onclick="pianoKeyPress(this)">a</div></li>
-            <li><div data-key="66" class="key" onclick="pianoKeyPress(this)">b</div></li>
-            <li><div data-key="67" class="key" onclick="pianoKeyPress(this)">c</div></li>
-            <li><div data-key="68" class="key" onclick="pianoKeyPress(this)">d</div></li>
-            <li><div data-key="69" class="key" onclick="pianoKeyPress(this)">e</div></li>
-            <li><div data-key="70" class="key" onclick="pianoKeyPress(this)">f</div></li>
-            <li><div data-key="71" class="key" onclick="pianoKeyPress(this)">g</div></li>
+            <li>
+                <div data-key="65" class="key" onclick="pianoKeyPress(this)">a</div>
+            </li>
+            <li>
+                <div data-key="66" class="key" onclick="pianoKeyPress(this)">b</div>
+            </li>
+            <li>
+                <div data-key="67" class="key" onclick="pianoKeyPress(this)">c</div>
+            </li>
+            <li>
+                <div data-key="68" class="key" onclick="pianoKeyPress(this)">d</div>
+            </li>
+            <li>
+                <div data-key="69" class="key" onclick="pianoKeyPress(this)">e</div>
+            </li>
+            <li>
+                <div data-key="70" class="key" onclick="pianoKeyPress(this)">f</div>
+            </li>
+            <li>
+                <div data-key="71" class="key" onclick="pianoKeyPress(this)">g</div>
+            </li>
         </ul>
     </div>
 
@@ -34,10 +49,14 @@
     <audio data-key="70" src="./assets/notes/F.mp3"></audio>
     <audio data-key="71" src="./assets/notes/G.mp3"></audio>
 
-    <div class="row piano-row">
-        <ul>
-            
-        </ul>
+    <div class="row clock-row">
+        <h1 class="">
+            <span class="clock-time">
+                <span class="clock-hour">00</span>:
+                <span class="clock-minute">00</span>:
+                <span class="clock-second">00</span>
+            </span>
+        </h1>
     </div>
 
     <script src="./assets/app.js"></script>
