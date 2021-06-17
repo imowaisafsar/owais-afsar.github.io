@@ -60,19 +60,24 @@
     padding-top: 50px;
     padding-bottom: 50px;
     /* background: linear-gradient(90deg, #321935, #865e8f); */
-    background-color: #f5f5f5;
+    background-color: #15061b;
 }
 .row.clock-row h1 {
     text-align: center;
     font-family: 'Changa', sans-serif;
-    font-size: xxx-large;
+    font-size: 60px;
     font-weight: 900;
 }
 .row.clock-row .clock-time {
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
-    background-image: linear-gradient(90deg, #31152d, #e58877);
+    background-image: linear-gradient(90deg, #722c30, #e58877);
 }
+
+span.clock-hour {-webkit-text-stroke: 2px #f5f5f5; /* width and color */}
+span.clock-minute {-webkit-text-stroke: 2px #f5f5f5; /* width and color */}
+span.clock-second {-webkit-text-stroke: 2px #f5f5f5; /* width and color */}
+span.clock-colon {-webkit-text-stroke: 2px #f5f5f5; /* width and color */}
 
 @media only screen and (max-width:975px){
     .piano-row ul li {
