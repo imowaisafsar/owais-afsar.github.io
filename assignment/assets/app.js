@@ -30,7 +30,7 @@ const digitalClock = async () => {
     let hour = date.getHours();
     let minute = date.getMinutes();
     let second = date.getSeconds();
-    console.log(`${hour}:${minute}:${second}`)
+    // console.log(`${hour}:${minute}:${second}`)
     document.querySelector(".clock-hour").innerText = hour
     document.querySelector(".clock-minute").innerText = minute
     document.querySelector(".clock-second").innerText = second
