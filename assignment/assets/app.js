@@ -41,7 +41,7 @@ const digitalClock = async () => {
     let second = date.getSeconds();
     // console.log(`${hour}:${minute}:${second}`)
     document.querySelector(".clock-hour").innerText =
-      hour < 10 ? `0${hour}` : hour;
+      hour < 10 ? `0${hour}` : hour > 12 ? `0${hour - 12}` : hour;
     document.querySelector(".clock-minute").innerText =
       minute < 10 ? `0${minute}` : minute;
     document.querySelector(".clock-second").innerText =
@@ -67,9 +67,9 @@ const monthsArr = [
 ];
 
 function calculateAge() {
-  let datePicked = document.querySelector(".date-picker").value;
-  console.log(datePicked);
+  let datePicked = document.querySelector(".datetime").value;
+  console.log(new Date(datePicked));
 }
-// document
-//   .querySelector(".calculate-age")
-//   .addEventListener("click", calculateAge);
+document
+  .querySelector(".calculate-age")
+  .addEventListener("click", calculateAge);
