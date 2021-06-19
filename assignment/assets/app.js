@@ -1,8 +1,10 @@
+// play piano
 const playPiano = (keyCode) => {
   //console.log(keyCode);
   let key = document.querySelector(`.key[data-key="${keyCode}"]`);
   if (!key) return;
   let audio = document.querySelector(`audio[data-key="${keyCode}"]`);
+
   key.classList.add("playing");
   audio.currentTime = 0;
   audio.play();
@@ -10,15 +12,22 @@ const playPiano = (keyCode) => {
     key.classList.remove("playing");
   });
 };
-// piano keydown
+// window keydown
 window.addEventListener("keydown", (e) => {
   playPiano(e.keyCode);
 });
-
+// piano key click
 const pianoKeyClick = (keyStr) => {
   let key = Number(keyStr.getAttribute("data-key"));
   playPiano(key);
 };
+
+// const removeTransition = (e) => {
+//   if (e.propertyName !== "transform") return;
+//   e.target.classList.remove("playing");
+// };
+// const keys = Array.from(document.querySelectorAll(".key"));
+// keys.forEach((key) => key.addEventListener("transitionend", removeTransition));
 
 // Returns a Promise that resolves after "ms" Milliseconds
 const timer = (ms) => new Promise((res) => setTimeout(res, ms));
@@ -56,46 +65,10 @@ const monthsArr = [
   "November",
   "December",
 ];
-const calculateAgeee = () => {
-  let currenDateMs = new Date().getTime();
-  let date = document.querySelector(".date").value;
-  let month = document.querySelector(".month").value;
-  let year = document.querySelector(".year").value;
-  let birthDateMs = new Date(`${date} ${monthsArr[month]} ${year}`).getTime();
-  //   console.log(new Date(`${date} ${monthsArr[month]} ${year}`))
-  let diffMs = currenDateMs - birthDateMs;
-  let diffYear = Math.floor(diffMs / (1000 * 60 * 60 * 24 * 365.25));
-  let diffMonth = Math.floor(diffMs / (1000 * 60 * 60 * 24 * 365.25));
-  let diffDay = Math.floor(diffMs / (1000 * 60 * 60 * 24 * 365.25));
-  console.log(claculatedAge);
-};
-
-function calculateAgee() {
-  //   let date = new Date();
-  let currentDay = new Date().getDate();
-  let currentMonth = new Date().getMonth();
-  let currentYear = new Date().getFullYear();
-  let birthDay = document.querySelector(".date").value;
-  let birthMonth = document.querySelector(".month").value;
-  let birthYear = document.querySelector(".year").value;
-  // birthDate = new Date(birthDate);
-  let birthDate = new Date(`${birthDay} ${monthsArr[birthMonth]} ${birthYear}`);
-  let currentDate = new Date(
-    `${currentDay} ${monthsArr[currentMonth]} ${currentYear}`
-  );
-
-  var date = currentDate.getDate() - birthDate.getDate();
-  var month = currentDate.getMonth() - birthDate.getMonth();
-  var years = currentDate.getFullYear() - birthDate.getFullYear();
-
-  console.log(date);
-  console.log(month);
-  console.log(years);
-}
 
 function calculateAge() {
-    let datePicked = document.querySelector(".date-picker").value;
-    console.log(datePicked);
+  let datePicked = document.querySelector(".date-picker").value;
+  console.log(datePicked);
 }
 // document
 //   .querySelector(".calculate-age")
