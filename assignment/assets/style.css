@@ -78,12 +78,12 @@
   @media only screen and (max-width: 975px) {
     .piano-row ul li {
       list-style: none;
-      margin: 5px 5px;
+      margin: 8px 8px;
     }
     .piano-row ul li div.key {
       display: flex;
-      width: 60px;
-      height: 60px;
+      width: 65px;
+      height: 65px;
       background-color: #ccc;
       justify-content: center;
       align-items: center;

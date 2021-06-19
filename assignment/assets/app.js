@@ -51,7 +51,7 @@ const digitalClock = async () => {
 };
 digitalClock();
 
-const monthsArr = [
+const monthsName = [
   "January",
   "February",
   "March",
@@ -65,11 +65,35 @@ const monthsArr = [
   "November",
   "December",
 ];
+const months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
 function calculateAge() {
-  let datePicked = document.querySelector(".datetime").value;
-  console.log(new Date(datePicked));
+  const today = new Date();
+  let datePicked = new Date(document.querySelector(".datetime").value);
+  let birthDate, birthMonth, birthYear;
+
+  let birthDetails = {
+    date: datePicked.getDate(),
+    month: datePicked.getMonth() + 1,
+    year: datePicked.getFullYear(),
+  };
+
+  let currentDate = today.getDate();
+  let currentMonth = today.getMonth() + 1;
+  let currentYear = today.getFullYear();
+
+  if (
+    birthDetails.year > currentYear ||
+    (birthDetails.month > currentMonth &&
+    birthDetails.year === currentYear) ||
+    (birthDetails.date > currentDate &&
+      birthDetails.month === currentMonth && birthDetails.year === currentYear)
+  ) {
+    document.querySelector('.calculator-info').innerText = "Enter correct age.";
+    return
+  }
 }
+
 document
   .querySelector(".calculate-age")
   .addEventListener("click", calculateAge);
