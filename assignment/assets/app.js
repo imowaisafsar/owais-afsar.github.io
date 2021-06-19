@@ -96,7 +96,7 @@ const calculateAge = () => {
       birthDetails.month === currentMonth &&
       birthDetails.year === currentYear)
   ) {
-    document.querySelector(".calculator-result").innerText = "Enter correct age.";
+    document.querySelector(".calculator-result").innerText = "Enter correct DOB.";
     return;
   }
 
