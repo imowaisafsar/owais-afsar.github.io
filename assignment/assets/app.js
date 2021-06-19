@@ -69,7 +69,12 @@ let months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
 const calculateAge = () => {
   const today = new Date();
-  let datePicked = new Date(document.querySelector(".datetime").value);
+  let inputVal = document.querySelector(".datetime").value;
+  let datePicked = new Date(inputVal);
+  if(datePicked == 'Invalid Date'){
+    document.querySelector(".calculator-result").innerText = "First select DOB.";
+    return
+  }
   let birthDate, birthMonth, birthYear;
 
   let birthDetails = {
