@@ -65,9 +65,9 @@ const monthsName = [
   "November",
   "December",
 ];
-const months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+let months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
-function calculateAge() {
+const calculateAge = () => {
   const today = new Date();
   let datePicked = new Date(document.querySelector(".datetime").value);
   let birthDate, birthMonth, birthYear;
@@ -82,18 +82,52 @@ function calculateAge() {
   let currentMonth = today.getMonth() + 1;
   let currentYear = today.getFullYear();
 
+  leapChecker(currentYear);
+
   if (
     birthDetails.year > currentYear ||
-    (birthDetails.month > currentMonth &&
-    birthDetails.year === currentYear) ||
+    (birthDetails.month > currentMonth && birthDetails.year === currentYear) ||
     (birthDetails.date > currentDate &&
-      birthDetails.month === currentMonth && birthDetails.year === currentYear)
+      birthDetails.month === currentMonth &&
+      birthDetails.year === currentYear)
   ) {
-    document.querySelector('.calculator-info').innerText = "Enter correct age.";
-    return
+    document.querySelector(".calculator-result").innerText = "Enter correct age.";
+    return;
+  }
+
+  birthYear = currentYear - birthDetails.year;
+
+  if (currentMonth >= birthDetails.month) {
+    birthMonth = currentMonth - birthDetails.month;
+  } else {
+    birthYear--;
+    birthMonth = 12 + currentMonth - birthDetails.month;
+  }
+
+  if (currentDate >= birthDetails.date) {
+    birthDate = currentDate - birthDetails.date;
+  } else {
+    birthMonth--;
+    let days = months[currentMonth - 2];
+    birthDate = days + currentDate - birthDetails.date;
+    if (birthMonth > 0) {
+      birthMonth = 11;
+      birthYear--;
+    }
+  }
+
+  document.querySelector(".calculator-result").innerText = `You are ${birthYear}years, ${birthMonth}months and ${birthDate}days old. 😂`;
+  // console.log(birthYear, birthMonth, birthDate)
+}
+
+const leapChecker = (year) => {
+  if (year % 4 === 0 || (year % 100 === 0 && year % 400 === 0)) {
+    months[1] = 29;
+  } else {
+    months[1] = 28;
   }
 }
 
 document
   .querySelector(".calculate-age")
-  .addEventListener("click", calculateAge);
+  .addEventListener("click", calculateAge)
