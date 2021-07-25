@@ -39,9 +39,7 @@
                 </select> <br>
                 <button type="button" id="btn_save" class="btn btn-primary btn-block">Save Info</button>
                 <button type="button" id="btn_check" class="btn btn-primary btn-secondary">Claculate</button>
-
                 <p class="result my-3"></p>
-
             </div>
         </div>
     </div>
@@ -115,6 +113,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+
     <script>
         var itemsArray = [
             { name: 'juice', price: 50, quantity: 3 },
@@ -158,6 +157,7 @@
 
         let records = [];
         const userInfo = () => {
+
             var gender = 'Both';
             var inputElements = document.getElementsByClassName('gender');
             for (var i = 0; inputElements[i]; ++i) {
@@ -169,6 +169,11 @@
             var name = document.getElementById('name').value;
             var address = document.getElementById('address').value;
             var edu = document.getElementById('edu').value;
+
+            if (name === '' || address === '' || edu === 'Not selected' || gender === 'Both') {
+                alert(`Fill details correctly.`)
+                return
+            }
 
             var res = new InfoConstructor({ name: name, gender: gender, address: address, edu: edu })
             records.push(res)
