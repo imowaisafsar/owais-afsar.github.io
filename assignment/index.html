@@ -100,12 +100,17 @@
     <script>
 
         var products = [
-            { name: "apple", price: "50", quantity: "3" },
-            { name: "mango", price: "30", quantity: "9" },
-            { name: "graps", price: "880", quantity: "1" },
-            { name: "orange", price: "100", quantity: "2" },
+            { name: "Apple", price: "50", quantity: "3" },
+            { name: "Mango", price: "30", quantity: "9" },
+            { name: "Graps", price: "880", quantity: "1" },
+            { name: "Orange", price: "100", quantity: "2" },
         ];
         var total = 0;
+
+products.forEach(function (e){
+document.write(e)
+});
+
         for (var i = 0; i < products.length; i++) {
             var price = products[i].price * products[i].quantity;
             document.write(products[i].name + ':' + price + '<br>');
