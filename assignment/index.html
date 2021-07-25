@@ -39,7 +39,7 @@ total += price;
             country: 'pakistan',
         };
         if (profile.hasOwnProperty("age") && profile.hasOwnProperty("country")) {
-            if (profile.name.hasOwnProperty('Owais') && profile.name.hasOwnProperty('Afsar')) {
+            if (profile.name.firstName === 'Owais' && profile.name.lastName === 'Afsar') {
                 document.write('Owais and Afsar property available <br>');
             }
             document.write('available <br>');
