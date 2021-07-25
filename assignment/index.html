@@ -90,8 +90,8 @@
             document.querySelector('.result').innerText = resText;
         }
 
-        document.querySelector('#btn_save').addEventListener('click', userInfo);
-        document.querySelector('#btn_check').addEventListener('click', calculatePop);
+        document.querySelector('#btn_save').addEventListener('click', () => { userInfo() });
+        document.querySelector('#btn_check').addEventListener('click', () => { calculatePop });
     </script>
 
 </head>
