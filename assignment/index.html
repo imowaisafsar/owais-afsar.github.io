@@ -107,16 +107,19 @@
         ];
         var total = 0;
 
-products.forEach(function (e){
-document.write(e)
+products.forEach(function (elem){
+document.write(elem)
+var price = elem.price * elem.quantity;
+document.write(elem.name + ' : ' + price + '<br>');
+total += price;
 });
 
-        for (var i = 0; i < products.length; i++) {
+        /*for (var i = 0; i < products.length; i++) {
             var price = products[i].price * products[i].quantity;
             document.write(products[i].name + ':' + price + '<br>');
             total += price;
-        }
-        document.write('price' + ' ' + price);
+        }*/
+        document.write(`Total price is : ${price}`);
 
 
         var profile = {
