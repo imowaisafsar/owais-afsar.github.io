@@ -12,10 +12,47 @@
     <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Changa:wght@700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./assets/style.css">
+
+<script>
+var products = [
+            { name: "Apple", price: "50", quantity: "3" },
+            { name: "Mango", price: "30", quantity: "9" },
+            { name: "Graps", price: "880", quantity: "1" },
+            { name: "Orange", price: "100", quantity: "2" },
+        ];
+        var total = 0;
+
+products.forEach(function (elem){
+// document.write(elem)
+var price = elem.price * elem.quantity;
+document.write(elem.name + ' : ' + price + '<br>');
+total += price;
+});
+
+        document.write(`Total price is : ${total}`);
+
+
+        var profile = {
+            //user data with age and country
+            name: { firstName: 'hammy', lastName: 'burds' },
+            email: 'hammy@gmail.com',
+            age: 23,
+            country: 'pakistan',
+        };
+        if (profile.hasOwnProperty("age") && profile.hasOwnProperty("country")) {
+            if (profile.name.hasOwnProperty('hammy') && profile.name.hasOwnProperty('burds')) {
+                console.log('hammy and burds property available');
+            }
+            document.write('available');
+        } else {
+            document.write('not available');
+        }
+</script>
+
 </head>
 
 <body>
-    
+    <div class="main-div">
     <div class="row clock-row">
         <h1 class="">
             <span class="clock-time">
@@ -71,6 +108,7 @@
             </p>
         </div>
     </div>
+    </div>
 
     <audio data-key="65" src="./assets/notes/A.mp3"></audio>
     <audio data-key="66" src="./assets/notes/B.mp3"></audio>
@@ -81,42 +119,6 @@
     <audio data-key="71" src="./assets/notes/G.mp3"></audio>
 
     <script src="./assets/app.js"></script>
-
-<script>
-var products = [
-            { name: "Apple", price: "50", quantity: "3" },
-            { name: "Mango", price: "30", quantity: "9" },
-            { name: "Graps", price: "880", quantity: "1" },
-            { name: "Orange", price: "100", quantity: "2" },
-        ];
-        var total = 0;
-
-products.forEach(function (elem){
-// document.write(elem)
-var price = elem.price * elem.quantity;
-document.write(elem.name + ' : ' + price + '<br>');
-total += price;
-});
-
-        document.write(`Total price is : ${total}`);
-
-
-        var profile = {
-            //user data with age and country
-            name: { firstName: 'hammy', lastName: 'burds' },
-            email: 'hammy@gmail.com',
-            age: 23,
-            country: 'pakistan',
-        };
-        if (profile.hasOwnProperty("age") && profile.hasOwnProperty("country")) {
-            if (profile.name.hasOwnProperty('hammy') && profile.name.hasOwnProperty('burds')) {
-                console.log('hammy and burds property available');
-            }
-            document.write('available');
-        } else {
-            document.write('not available');
-        }
-</script>
 
 </body>
 
