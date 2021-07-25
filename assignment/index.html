@@ -92,7 +92,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Assignment</title>
 </head>
 
 <body>
@@ -108,18 +108,13 @@
         var total = 0;
 
 products.forEach(function (elem){
-document.write(elem)
+// document.write(elem)
 var price = elem.price * elem.quantity;
 document.write(elem.name + ' : ' + price + '<br>');
 total += price;
 });
 
-        /*for (var i = 0; i < products.length; i++) {
-            var price = products[i].price * products[i].quantity;
-            document.write(products[i].name + ':' + price + '<br>');
-            total += price;
-        }*/
-        document.write(`Total price is : ${price}`);
+        document.write(`Total price is : ${total}`);
 
 
         var profile = {
@@ -133,9 +128,9 @@ total += price;
             if (profile.name.hasOwnProperty('hammy') && profile.name.hasOwnProperty('burds')) {
                 console.log('hammy and burds property available');
             }
-            console.log('available');
+            document.write('available');
         } else {
-            console.log('not available');
+            document.write('not available');
         }
 
     </script>
