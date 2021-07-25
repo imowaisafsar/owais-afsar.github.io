@@ -15,84 +15,6 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
-    <script>
-        var itemsArray = [
-            { name: 'juice', price: 50, quantity: 3 },
-            { name: 'cookie', price: 30, quantity: 9 },
-            { name: 'shirt', price: 880, quantity: 1 },
-            { name: 'pen', price: 100, quantity: 2 }
-        ];
-
-        let totalPrice = 0;
-        itemsArray.forEach(element => {
-            let itemPrice = element.price * element.quantity
-            totalPrice += itemPrice;
-        });
-        console.log(`Total price of Items is : ${totalPrice}.`)
-
-        var obj = {
-            name: { firstName: 'Owais', lastName: 'Afsar' },
-            email: 'owais_afsar@mywebmail.com',
-            password: '123qwe',
-            age: 23,
-            gender: 'M',
-            city: 'Karachi',
-            country: 'Pakistan'
-        }
-
-        if (obj.hasOwnProperty('age') && obj.hasOwnProperty('country')) {
-            console.log('Age and Country is available in OBJ.');
-            //
-            if (obj.name.hasOwnProperty('firstName') && obj.name.hasOwnProperty('lastName')) {
-                console.log('First Name and Last Name is available in OBJ.');
-            }
-        }
-
-        function ConsFn(name, email, age) {
-            this.userName = name;
-            this.userEmail = email;
-            this.userAge = age
-        }
-        let cons = new ConsFn('Owais Afsar', 'owais_afsar@mywebmail.com', 23)
-        console.log(cons)
-
-        let records = [];
-        const userInfo = () => {
-            var gender = 'Both';
-            var inputElements = document.getElementsByClassName('gender');
-            for (var i = 0; inputElements[i]; ++i) {
-                if (inputElements[i].checked) {
-                    gender = inputElements[i].value;
-                    break;
-                }
-            }
-            var name = document.getElementById('name').value;
-            var address = document.getElementById('address').value;
-            var edu = document.getElementById('edu').value;
-
-            var res = new InfoConstructor({ name: name, gender: gender, address: address, edu: edu })
-            records.push(res)
-            console.log(records)
-        }
-
-        function InfoConstructor({ name, gender, address, edu }) {
-            this.userName = name;
-            this.userGender = gender;
-            this.userAddress = address;
-            this.userEducations = edu;
-        }
-
-        const calculatePop = () => {
-            let resText = `Population of your area is ${records.length}`;
-            document.querySelector('.result').innerText = resText;
-        }
-
-        document.querySelector('#btn_save').addEventListener('click', () => { userInfo() });
-        document.querySelector('#btn_check').addEventListener('click', () => { calculatePop });
-    </script>
 
 </head>
 
@@ -190,6 +112,85 @@
     <audio data-key="70" src="./assets/notes/F.mp3"></audio>
     <audio data-key="71" src="./assets/notes/G.mp3"></audio>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script>
+        var itemsArray = [
+            { name: 'juice', price: 50, quantity: 3 },
+            { name: 'cookie', price: 30, quantity: 9 },
+            { name: 'shirt', price: 880, quantity: 1 },
+            { name: 'pen', price: 100, quantity: 2 }
+        ];
+
+        let totalPrice = 0;
+        itemsArray.forEach(element => {
+            let itemPrice = element.price * element.quantity
+            totalPrice += itemPrice;
+        });
+        console.log(`Total price of Items is : ${totalPrice}.`)
+
+        var obj = {
+            name: { firstName: 'Owais', lastName: 'Afsar' },
+            email: 'owais_afsar@mywebmail.com',
+            password: '123qwe',
+            age: 23,
+            gender: 'M',
+            city: 'Karachi',
+            country: 'Pakistan'
+        }
+
+        if (obj.hasOwnProperty('age') && obj.hasOwnProperty('country')) {
+            console.log('Age and Country is available in OBJ.');
+            //
+            if (obj.name.hasOwnProperty('firstName') && obj.name.hasOwnProperty('lastName')) {
+                console.log('First Name and Last Name is available in OBJ.');
+            }
+        }
+
+        function ConsFn(name, email, age) {
+            this.userName = name;
+            this.userEmail = email;
+            this.userAge = age
+        }
+        let cons = new ConsFn('Owais Afsar', 'owais_afsar@mywebmail.com', 23)
+        console.log(cons)
+
+        let records = [];
+        const userInfo = () => {
+            var gender = 'Both';
+            var inputElements = document.getElementsByClassName('gender');
+            for (var i = 0; inputElements[i]; ++i) {
+                if (inputElements[i].checked) {
+                    gender = inputElements[i].value;
+                    break;
+                }
+            }
+            var name = document.getElementById('name').value;
+            var address = document.getElementById('address').value;
+            var edu = document.getElementById('edu').value;
+
+            var res = new InfoConstructor({ name: name, gender: gender, address: address, edu: edu })
+            records.push(res)
+            console.log(records)
+        }
+
+        function InfoConstructor({ name, gender, address, edu }) {
+            this.userName = name;
+            this.userGender = gender;
+            this.userAddress = address;
+            this.userEducations = edu;
+        }
+
+        const calculatePop = () => {
+            let resText = `Population of your area is ${records.length}`;
+            document.querySelector('.result').innerText = resText;
+        }
+
+        document.querySelector('#btn_save').addEventListener('click', () => { userInfo() });
+        document.querySelector('#btn_check').addEventListener('click', () => { calculatePop });
+    </script>
+    
     <script src="./assets/app.js"></script>
 
 </body>
