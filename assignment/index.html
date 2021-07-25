@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -80,18 +80,57 @@
     <audio data-key="70" src="./assets/notes/F.mp3"></audio>
     <audio data-key="71" src="./assets/notes/G.mp3"></audio>
 
-    <!-- <div class="row calculator-row">
-        <div class="calculator">
-            <div class="dates-row">
-                <input type="date" class="date-picker">
-            </div>
-            <button class="calculate-age">
-                Calculate
-            </button>
-        </div>
-    </div> -->
-
     <script src="./assets/app.js"></script>
+</body>
+
+</html>-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        var products = [
+            { name: "apple", price: "50", quantity: "3" },
+            { name: "mango", price: "30", quantity: "9" },
+            { name: "graps", price: "880", quantity: "1" },
+            { name: "orange", price: "100", quantity: "2" },
+        ];
+        var total = 0;
+        for (var i = 0; i < products.length; i++) {
+            var price = products[i].price * products[i].quantity;
+            document.write(products[i].name + ':' + price + '<br>');
+            total += price;
+        }
+        document.write('price' + ' ' + price);
+
+
+        var profile = {
+            //user data with age and country
+            name: { firstName: 'hammy', lastName: 'burds' },
+            email: 'hammy@gmail.com',
+            age: 23,
+            country: 'pakistan',
+        };
+        if (profile.hasOwnProperty("age") && profile.hasOwnProperty("country")) {
+            if (profile.name.hasOwnProperty('hammy') && profile.name.hasOwnProperty('burds')) {
+                console.log('hammy and burds property available');
+            }
+            console.log('available');
+        } else {
+            console.log('not available');
+        }
+
+    </script>
 </body>
 
 </html>
