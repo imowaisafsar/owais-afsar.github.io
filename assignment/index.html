@@ -85,8 +85,8 @@
             document.querySelector('.result').innerText = resText;
         }
 
-        document.getElementById('btn').addEventListener('click', userInfo);
-        document.getElementById('check').addEventListener('click', calculatePop);
+        document.querySelector('#btn_save').addEventListener('click', userInfo);
+        document.querySelector('#btn_check').addEventListener('click', calculatePop);
     </script>
 
 </head>
@@ -110,8 +110,8 @@
                     <option value="Matriculate">Matriculate</option>
                     <option value="Intermediate">Intermediate</option>
                 </select> <br>
-                <button type="button" id="btn" class="btn btn-primary btn-block">Save</button>
-                <button type="button" id="check" class="btn btn-primary btn-secondary">Check</button>
+                <button type="button" id="btn_save" class="btn btn-primary btn-block">Save</button>
+                <button type="button" id="btn_check" class="btn btn-primary btn-secondary">Check</button>
 
                 <p class="result my-3"></p>
 
