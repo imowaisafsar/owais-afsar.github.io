@@ -1,5 +1,5 @@
-import "https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js";
-import "https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js";
+// import "https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js";
+// import "https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -14,3 +14,4 @@ const firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
+const firestore = firebase.firestore();
