@@ -1,3 +1,4 @@
+import "https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js";
 import "https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js";
 
 // Your web app's Firebase configuration
