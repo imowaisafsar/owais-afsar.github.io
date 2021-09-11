@@ -1,34 +1,33 @@
-let currentUser;
-const checkAuthState = () => {
-  auth.onAuthStateChanged((user) => {
-    currentUser = user;
+let currentUserAuth;
+const checkAuthState = async () => {
+  await auth.onAuthStateChanged((user) => {
+    currentUserAuth = user;
     if (user) {
-      console.log(user);
+      console.log(currentUserAuth);
+      getCurrentUser()
     } else {
       window.location.href = "index.html";
     }
   });
 };
-// checkAuthState();
+checkAuthState();
 
 const getCurrentUser = async () => {
-  await checkAuthState();
-  console.log(currentUser);
   firestore
     .collection("users")
-    .where("isActive", "==", true & "userId", "==", currentUser.uid)
+    .where("isActive", "==", true)
+    .where("userId", "==", currentUserAuth.uid)
     .get()
     .then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
-        //   console.log(doc.id, " => ", doc.data());
         console.log(doc.data());
       });
     })
     .catch((error) => {
+      toastr.error(error.message, "Error");
       console.log("Error getting documents: ", error);
     });
 };
-getCurrentUser();
 
 const signOut = () => {
   try {

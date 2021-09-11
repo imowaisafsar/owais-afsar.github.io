@@ -25,6 +25,10 @@ const handleSignup = () => {
     toastr.error("Password can not be empty.");
     return;
   }
+
+  $('#signUpBtn').attr('disabled', 'disabled');
+  $('.signUpBtn-text').hide();
+  $('.signUpBtn-loader').show();
   signup(email, password, fullname);
 };
 document.querySelector("#signUpBtn").addEventListener("click", handleSignup);
@@ -42,9 +46,17 @@ const signup = (email, password, name) => {
         var errorCode = error.code;
         var errorMessage = error.message;
         toastr.error(errorMessage, "Error");
+
+        $('#signUpBtn').removeAttr('disabled');
+        $('.signUpBtn-text').show();
+        $('.signUpBtn-loader').hide();
       });
   } catch (err) {
     toastr.error(err.message, "Error");
+
+    $('#signUpBtn').removeAttr('disabled');
+    $('.signUpBtn-text').show();
+    $('.signUpBtn-loader').hide();
   }
 };
 
@@ -55,14 +67,23 @@ const createUserDb = (uId, name) => {
     createdAt: new Date(),
     isActive: true,
   };
+
   firestore
     .collection("users")
     .add(user)
     .then((res) => {
       console.log(res);
       toastr.success("Signed up successfully.", "Success");
+
+      $('#signUpBtn').removeAttr('disabled');
+      $('.signUpBtn-text').show();
+      $('.signUpBtn-loader').hide();
     })
     .catch((err) => {
       toastr.error(err.message, "Error");
+
+      $('#signUpBtn').removeAttr('disabled');
+      $('.signUpBtn-text').show();
+      $('.signUpBtn-loader').hide();
     });
 };
