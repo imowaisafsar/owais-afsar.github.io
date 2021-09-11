@@ -1,16 +1,15 @@
 let currentUserAuth;
-const checkAuthState = async () => {
-  await auth.onAuthStateChanged((user) => {
-    currentUserAuth = user;
-    if (user) {
-      console.log(currentUserAuth);
-      getCurrentUser()
-    } else {
-      window.location.href = "index.html";
-    }
-  });
-};
-checkAuthState();
+let currentUserProfile;
+
+auth.onAuthStateChanged((user) => {
+  currentUserAuth = user;
+  if (user) {
+    console.log(currentUserAuth);
+    getCurrentUser()
+  } else {
+    window.location.href = "index.html";
+  }
+})
 
 const getCurrentUser = async () => {
   firestore
@@ -21,12 +20,15 @@ const getCurrentUser = async () => {
     .then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         console.log(doc.data());
+        currentUserProfile = doc.data();
       });
+      document.querySelector('#current_user_profile_text').innerText = currentUserProfile.userName;
     })
     .catch((error) => {
       toastr.error(error.message, "Error");
       console.log("Error getting documents: ", error);
     });
+
 };
 
 const signOut = () => {

@@ -29,16 +29,115 @@
     </style>
 
     <!-- Custom styles for this template -->
-    <link href="./assets/css/signin.css" rel="stylesheet">
+    <link href="./assets/css/dashboard.css" rel="stylesheet">
     <link href="./assets/css/custom.css" rel="stylesheet">
 </head>
 
 <body>
 
-    <div class="container-fluid">
+    <header class="p-3 mb-3 border-bottom">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <a href="/" class="d-flex align-items-center mr-3 mb-lg-0 text-dark text-decoration-none">
+                    <img class="mr-4" src="./assets/img/team-logo.png" alt="" width="32" height="28">
+                </a>
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <!-- <li><a href="#" class="nav-link px-2 link-dark">Teams</a></li>
+                    <li><a href="#" class="nav-link px-2 link-dark">Inventory</a></li>
+                    <li><a href="#" class="nav-link px-2 link-dark">Customers</a></li>
+                    <li><a href="#" class="nav-link px-2 link-dark">Products</a></li> -->
+                </ul>
+
+                <div class="dropdown text-end">
+                    <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <span><strong id="current_user_profile_text"></strong></span>
+                    </a>
+                    <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+                        <li><a class="dropdown-item" href="javascript:void(0)" type="button" id="signOutBtn">Sign
+                                Out</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
         <div class="row">
             <div class="col-md-12 p-0">
-                <button class="btn btn-secondary" type="button" id="signOutBtn">Sign Out</button>
+                <!-- <button class="btn btn-secondary" type="button" id="signOutBtn">Sign Out</button> -->
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
+                            type="button" role="tab" aria-controls="home" aria-selected="true">Tams</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile"
+                            type="button" role="tab" aria-controls="profile" aria-selected="false">Profile</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact"
+                            type="button" role="tab" aria-controls="contact" aria-selected="false">Contact</button>
+                    </li>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <br>
+                                    <div class="d-flex justify-content-end">
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                            data-bs-target="#staticBackdrop">
+                                            Create new team
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
+                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Create new team</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group mb-2">
+                        <label for="createTeamName">Team name</label>
+                        <input type="text" class="form-control" id="createTeamName" placeholder="E.g. ABC team">
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="createTeamType">Team Category</label>
+                        <select class="form-control" id="createTeamType">
+                            <option value="">Select</option>
+                            <option value="managment">Managment</option>
+                            <option value="employee">Employee</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="createTeamEmail">Team members</label>
+                        <div class="input-group mb-3">
+                            <input type="email" class="form-control" placeholder="email@example.com" aria-label="email"
+                                aria-describedby="AddTeamMember" id="createTeamEmail">
+                            <span class="input-group-text" id="AddTeamMember">+</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary">Create</button>
+                </div>
             </div>
         </div>
     </div>
