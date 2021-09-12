@@ -70,7 +70,8 @@ const createUserDb = (uId, name) => {
 
   firestore
     .collection("users")
-    .add(user)
+    .doc(uId)
+    .set(user)
     .then((res) => {
       console.log(res);
       toastr.success("Signed up successfully.", "Success");
@@ -86,4 +87,4 @@ const createUserDb = (uId, name) => {
       $('.signUpBtn-text').show();
       $('.signUpBtn-loader').hide();
     });
-};
+}

@@ -13,5 +13,6 @@ const firebaseConfig = {
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+const secondaryApp = firebase.initializeApp(firebaseConfig, "Secondary");
 const auth = firebase.auth();
 const firestore = firebase.firestore();
