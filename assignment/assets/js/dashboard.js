@@ -29,7 +29,7 @@ const getCurrentUser = async () => {
     .get()
     .then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
-        console.log(doc.data());
+        // console.log(doc.data());
         currentUserProfile = doc.data();
       });
       document.querySelector("#current_user_profile_text").innerText =
@@ -85,10 +85,10 @@ const createTeam = async () => {
       validMail = false;
     }
   })
-  if (includeYourself) {
-    toastr.error('You are the team manager, can not add your mail in members list. Try removing your mail and try again.', "Error");
-    return;
-  }
+  // if (includeYourself) {
+  //   toastr.error('You are the team manager, can not add your mail in members list. Try removing your mail and try again.', "Error");
+  //   return;
+  // }
   if (!validMail) {
     toastr.error('Team members email is badly formatted.', "Error");
     return;
@@ -153,16 +153,20 @@ const sendConfirmationMail = async ({ email, name }) => {
 
 const getAllTeam = () => {
   let teamsCol = firestore.collection("teams");
+
+  // let teamsYouAreMemRef = firestore.collection("teams").where("teamMembers", "array-contains", currentUserAuth.uid);
+
   let teamsByYouRef = teamsCol.where("createdBy", "==", currentUserAuth.uid).orderBy("teamName", "desc");
-  teamsByYouRef.onSnapshot((snapshot) => {
-    snapshot.docChanges().forEach((change) => {
+  teamsByYouRef.onSnapshot(snapshot => {
+    snapshot.docChanges().forEach(change => {
+      // console.log(change)
       if (change.type === "added") {
-        item = change.doc.data();
+        let item = change.doc.data();
         let members = "";
-        item.teamMembers.forEach((element) => {
+        item.teamMembers.forEach(element => {
           members += `${element}, `;
         })
-        let html = `<div class="col-md-4"><div class="card">
+        let html = `<div class="col-md-4 mb-3"><div class="card">
           <div class="card-body">
           <h5 class="card-title"><small>Team Name:</small> ${item.teamName}</h5>
           <p class="card-text"><small>Team Members:</small> ${members}</p>
@@ -173,6 +177,35 @@ const getAllTeam = () => {
       }
     });
   });
+
+  firestore
+    .collection("teams")
+    .where("teamMembers", "array-contains", [currentUserAuth.uid])
+    .get()
+    .then((querySnapshot) => {
+      $("#teamYouAreMemberOf").html('');
+      querySnapshot.forEach((doc) => {
+        item = doc.data();
+        ////
+        let item = change.doc.data();
+        let members = "";
+        item.teamMembers.forEach(element => {
+          members += `${element}, `;
+        })
+        let html = `<div class="col-md-4 mb-3"><div class="card">
+          <div class="card-body">
+          <h5 class="card-title"><small>Team Name:</small> ${item.teamName}</h5>
+          <p class="card-text"><small>Team Members:</small> ${members}</p>
+          </div>
+          </div>
+          </div>`;
+        $("#teamYouAreMemberOf").append(html);
+      })
+    })
+    .catch((error) => {
+      toastr.error(error.message, "Error");
+      console.log("Error getting teams: ", error);
+    });
 
   // firestore
   //   .collection("teams")
