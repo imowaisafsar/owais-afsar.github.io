@@ -1,10 +1,10 @@
 const firebaseConfig = {
-  apiKey: "AIzaSyCVHl4wpsQSdCdeDY7EVHw9jUoVMKyp2cI",
-  authDomain: "balloon-game-5c8a0.firebaseapp.com",
-  projectId: "balloon-game-5c8a0",
-  storageBucket: "balloon-game-5c8a0.appspot.com",
-  messagingSenderId: "694569494557",
-  appId: "1:694569494557:web:74a94722247297bbd03ef4",
+  apiKey: "AIzaSyBzQxbt6wPVtXDyuD0WqM2b2DkPViJXwvk",
+  authDomain: "popabal00n.firebaseapp.com",
+  projectId: "popabal00n",
+  storageBucket: "popabal00n.appspot.com",
+  messagingSenderId: "41782410864",
+  appId: "1:41782410864:web:fb52044628ce7aa35d3eb5"
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
