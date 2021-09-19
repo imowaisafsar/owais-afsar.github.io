@@ -27,7 +27,15 @@ section#game_section {
 section > .login-bg-image {
   width: 100%;
   min-height: 100vh;
-  background-image: url("https://images.unsplash.com/photo-1580234811497-9df7fd2f357e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80");
+  background-image: url("https://images.unsplash.com/photo-1611996575749-79a3a250f948?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1100&q=80");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+section#dashboard_section {
+  width: 100%;
+  min-height: 100vh;
+  background-image: url("https://images.unsplash.com/10/wii.jpg?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1100&q=80");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -43,9 +51,25 @@ section#login_section .login-box .info {
   text-shadow: 2px 2px 3px #333;
 }
 
+.card {
+  background-color: #ffffff90;
+  padding: 80px 30px;
+  border-radius: 20px !important;
+  box-shadow: 2px 2px 25px #5c5c5c45;
+}
+div#gamePad {
+  background-color: #ccc;
+  border-radius: 20px;
+  padding: 30px 10px;
+}
+
+section#login_section .login-box .loginBtn {
+  width: 100%;
+  text-align: center;
+}
 section#login_section .login-box .loginBtn span.image img {
   width: 80px;
-  border-radius: 50%;
+  border-radius: 10px;
 }
 
 .baloon-container {
