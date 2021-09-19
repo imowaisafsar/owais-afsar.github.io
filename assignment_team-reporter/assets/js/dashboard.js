@@ -151,6 +151,10 @@ const sendConfirmationMail = async ({ email, name }) => {
   )
 }
 
+const deleteById = (id) => {
+  console.log(`Delete: `, id)
+}
+
 const getAllTeam = () => {
   let teamsCol = firestore.collection("teams");
 
@@ -158,20 +162,28 @@ const getAllTeam = () => {
 
   let teamsByYouRef = teamsCol.where("createdBy", "==", currentUserAuth.uid).orderBy("teamName", "desc");
   teamsByYouRef.onSnapshot(snapshot => {
+    console.log(snapshot.payload.doc.id)
     snapshot.docChanges().forEach(change => {
+      console.log(change.payload.doc.id)
       // console.log(change)
       if (change.type === "added") {
+        console.log(change)
+        console.log(change.doc.data())
+        console.log('==========')
         let item = change.doc.data();
         let members = "";
         item.teamMembers.forEach(element => {
           members += `${element}, `;
         })
-        let html = `<div class="col-md-4 mb-3"><div class="card">
-          <div class="card-body">
-          <h5 class="card-title"><small>Team Name:</small> ${item.teamName}</h5>
-          <p class="card-text"><small>Team Members:</small> ${members}</p>
-          </div>
-          </div>
+        let html = `<div class="col-md-4 mb-3">
+            <div class="card">
+              <div class="card-header"><small>Team Name:</small> <h5 class="card-title">${item.teamName}</h5></div>
+              <div class="card-body">
+                <small>Team Members:</small> 
+                <p class="card-text">${members}</p>
+              </div>
+              <div class="card-footer"><button type="button" class="btn btn-secondary btn-sm" onclick="deleteById(${item.id})">Delete</button></div>
+            </div>
           </div>`;
         $("#teamCreatedByYou").append(html);
       }
