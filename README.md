@@ -1,38 +1,8 @@
-## Muhammad Owais Afsar.
+## Muhammad Owais Afsar. :slightly_smiling_face:
 
-I'm a Full-stack Developer
-Building digital products, brands, and experience.
+**I'm a Full-stack Developer.**
+_Building digital products, brands, and experience._
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+I am a Web and App Developer, & I love to work on products that create significant constructive change in a day to day lives of people. With over 3+ years of experience, I have worked with many companies and their products. One of my interests is learning, I always love to learn new technologies and keep improving my skills.
 
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/owais-afsar/owais-afsar.github.io/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+Other than coding I love Travelling, Fitness & helping others in the community. I am also a strong believer in Financial Independence & I have already started working on products that will make that happen.
